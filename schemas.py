@@ -10,6 +10,7 @@ class ReportCreate(BaseModel):
     detail: Optional[str] = None
     status: Status = Status.Draft
     evidence_url: Optional[str] = None
+    created_by: Optional[str] = None
 
 class ReportUpdate(BaseModel):
     title: Optional[str] = None
@@ -21,20 +22,15 @@ class ReportUpdate(BaseModel):
     edited_by: Optional[str] = None
 
 
-class ReportRead(BaseModel):
+class ReportRead(ReportCreate):
     id: str
-    title: str
-    description: str
-    category: Category
-    detail: Optional[str] = None
-    status: Status
-    evidence_url: Optional[str] = None
     created_at: datetime
     updated_at: datetime
     task_id: Optional[str] = None
     presigned_url: Optional[str] = None
     object_path: Optional[str] = None
     jwt_token: Optional[str] = None
+    queue_position: Optional[int] = None
 
     class Config:
         orm_mode = True
@@ -44,11 +40,8 @@ class VoteCreate(BaseModel):
     report_id: str
     vote_type: VoteType
 
-class VoteRead(BaseModel):
+class VoteRead(VoteCreate):
     id: int
-    user_id: str
-    report_id: str
-    vote_type: VoteType
     created_at: datetime
 
     class Config:

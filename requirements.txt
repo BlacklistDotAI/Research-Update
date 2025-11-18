@@ -7,3 +7,7 @@ jwt
 pydantic 
 pydantic[email]
 python-multipart
+boto3
+sqlalchemy 
+redis
+pyjwt

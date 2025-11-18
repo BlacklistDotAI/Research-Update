@@ -7,8 +7,14 @@ from datetime import datetime
 from backend.database import get_session
 from backend.models import Report, Status, Vote, VoteType
 from backend.schemas import ReportCreate, ReportUpdate, ReportRead, VoteCreate, VoteRead
-from backend.utils import generate_presigned_url,create_jwt_token
-
+from backend.utils import (
+    generate_presigned_s3_url,
+    create_jwt_token,
+    create_task_id,
+    push_task_to_queue,
+    get_queue_position,
+    update_task_status
+)
 router = APIRouter(prefix="/reports", tags=["Reports"])
 
 #Create report
@@ -17,8 +23,9 @@ async def create_report(
     data: ReportCreate,
     session: AsyncSession = Depends(get_session)
 ):
+    task_id=create_task_id()
     object_path = f"proofs/{uuid.uuid4()}.dat"
-    presigned_url = generate_presigned_url(object_path)
+    presigned_url = generate_presigned_s3_url(object_path)
     task_jwt = create_jwt_token({"task_id": str(uuid.uuid4())})
     report = Report(
         title=data.title,
@@ -34,14 +41,16 @@ async def create_report(
     session.add(report)
     await session.commit()
     await session.refresh(report)
+    #push task into Redis queue
+    push_task_to_queue(task_id=task_id, object_path=object_path, user_id=report.id)
 
-    # Thêm presigned URL vào object trả về FE
     report_dict = ReportRead.from_orm(report).dict()
     report_dict.update({
         "task_id": report.id,
         "presigned_url": presigned_url,
         "object_path": object_path,
-        "jwt_token": task_jwt
+        "jwt_token": task_jwt,
+        "queue_position": get_queue_position(task_id)
     })
     return report_dict
 
@@ -83,14 +92,11 @@ async def list_reports(
 ):
     result = await session.execute(
         select(Report)
-        .where(Report.status == Status.Published)
+        .where(Report.status == Status.Publish)
         .limit(limit)
         .offset(offset)
     )
 
-    result = await session.execute(
-        select(Report).where(Report.status == Status.Publish).limit(limit).offset(offset)
-    )
     reports = result.scalars().all()
 
     now = datetime.utcnow()
@@ -103,6 +109,7 @@ async def list_reports(
                 r.status = Status.Blacklist
                 changed = True
                 session.add(r)
+        r.queue_position=get_queue_position(r.id)
     if changed:
         await session.commit()
 

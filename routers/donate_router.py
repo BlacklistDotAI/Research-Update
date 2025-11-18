@@ -4,6 +4,7 @@ from typing import List
 from backend.database import get_session
 from backend.models import Donate
 from backend.schemas import DonateCreate, DonateRead
+from sqlalchemy import select
 
 router = APIRouter(prefix="/donates", tags=["Donate"])
 
