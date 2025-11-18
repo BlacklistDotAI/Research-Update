@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlmodel
+psycopg2-binary
+asyncpg
+jwt
+pydantic 
+pydantic[email]
+python-multipart
