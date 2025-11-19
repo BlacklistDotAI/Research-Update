@@ -1,15 +1,16 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 from typing import List
 from backend.database import get_session
 from backend.models import Donate
 from backend.schemas import DonateCreate, DonateRead
-from sqlalchemy import select
 
 router = APIRouter(prefix="/donates", tags=["Donate"])
 
 @router.post("/", response_model=DonateRead)
 async def create_donate(donate_in: DonateCreate, session: AsyncSession = Depends(get_session)):
+    """Creates a new donation record."""
     donate = Donate(**donate_in.dict())
     session.add(donate)
     await session.commit()
@@ -18,5 +19,6 @@ async def create_donate(donate_in: DonateCreate, session: AsyncSession = Depends
 
 @router.get("/", response_model=List[DonateRead])
 async def list_donates(session: AsyncSession = Depends(get_session)):
+    """Retrieves a list of all donation records."""
     result = await session.execute(select(Donate))
     return result.scalars().all()

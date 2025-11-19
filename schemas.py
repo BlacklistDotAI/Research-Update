@@ -1,36 +1,33 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import datetime
-from backend.models import Category, Status, VoteType
+from backend.models import Category, Status, VoteType, ProofType
 
 class ReportCreate(BaseModel):
     title: str
     description: str
-    category: Category
+    category_str: str
     detail: Optional[str] = None
-    status: Status = Status.Draft
-    evidence_url: Optional[str] = None
-    created_by: Optional[str] = None
+    status_str: str = "Draft"
 
 class ReportUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
-    category: Optional[Category] = None
+    category_str: Optional[str] = None
     detail: Optional[str] = None
-    status: Optional[Status] = None
-    evidence_url: Optional[str] = None
-    edited_by: Optional[str] = None
+    status_str: Optional[str] = None
 
-
-class ReportRead(ReportCreate):
+class ReportRead(BaseModel):
     id: str
+    title: str
+    description: str
+    category: Category
+    detail: Optional[str]
+    status: Status
+    proof_file: Optional[str]
+    proof_type: Optional[ProofType]
     created_at: datetime
     updated_at: datetime
-    task_id: Optional[str] = None
-    presigned_url: Optional[str] = None
-    object_path: Optional[str] = None
-    jwt_token: Optional[str] = None
-    queue_position: Optional[int] = None
 
     class Config:
         orm_mode = True
@@ -46,16 +43,16 @@ class VoteRead(VoteCreate):
 
     class Config:
         orm_mode = True
-        
+
 class DonateCreate(BaseModel):
     name: str
-    email: EmailStr         
+    email: EmailStr
     amount: float
     method: str
     message: Optional[str] = None
 
 class DonateRead(DonateCreate):
-    id: str
+    id: int
     created_at: datetime
 
     class Config:

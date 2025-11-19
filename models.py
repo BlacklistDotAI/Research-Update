@@ -4,20 +4,29 @@ from enum import Enum
 from datetime import datetime
 import uuid
 
+# Report categories
 class Category(str, Enum):
     Phone_Number = "Phone Number"
     Personnel_KOL = "Personnel/KOL"
     Company = "Company"
     Event = "Event"
 
+# Report status
 class Status(str, Enum):
     Draft = "Draft"
     Publish = "Publish"
     Blacklist = "Blacklist"
 
+# Vote type
 class VoteType(str, Enum):
     Blacklist = "Blacklist"
     Whitelist = "Whitelist"
+
+# Proof type
+class ProofType(str, Enum):
+    image = "image"
+    video = "video"
+    audio = "audio"
 
 class Report(SQLModel, table=True):
     __tablename__ = "reports"
@@ -26,14 +35,14 @@ class Report(SQLModel, table=True):
     description: str
     category: Category
     detail: Optional[str] = None
-    evidence_url: Optional[str] = None
-    created_by: Optional[str] = None
-
-    status: Status = Status.Draft
+    proof_file: Optional[str] = None
+    proof_type: Optional[ProofType] = None
+    status: Status = Field(default=Status.Draft)
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
-    votes: List["Vote"] = Relationship(back_populates="report")
+    # One-to-many relationship with Vote
+    votes: List["Vote"] = Relationship(back_populates="report", sa_relationship_kwargs={"cascade":"all, delete-orphan"})
 
 class Vote(SQLModel, table=True):
     __tablename__ = "votes"
@@ -43,9 +52,9 @@ class Vote(SQLModel, table=True):
     vote_type: VoteType
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
+    # Many-to-one relationship with Report
     report: Optional[Report] = Relationship(back_populates="votes")
 
-# Donate form
 class Donate(SQLModel, table=True):
     __tablename__ = "donates"
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -54,5 +63,4 @@ class Donate(SQLModel, table=True):
     amount: float
     method: str
     message: Optional[str] = None
-
     created_at: datetime = Field(default_factory=datetime.utcnow)

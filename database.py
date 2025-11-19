@@ -1,8 +1,7 @@
-# backend/database.py
 from sqlmodel import SQLModel
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
-from backend.models import Report, Vote,Donate
+from backend.models import Report, Vote, Donate
 
 DATABASE_URL = "postgresql+asyncpg://postgres:21022004a@localhost:5432/simple_db"
 
