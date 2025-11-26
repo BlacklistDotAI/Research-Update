@@ -8,7 +8,7 @@ import axios, { AxiosInstance, AxiosError, AxiosResponse } from 'axios';
  * API Base URL from environment variables
  * Falls back to hardcoded URL for local development
  */
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://scam-detect.techainer.com';
 
 // console.log('🔧 API Config:', {
 //   VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
@@ -321,7 +321,7 @@ export const createReport = async (
   reportData: ReportRequest
 ): Promise<ReportResponse> => {
   try {
-    const response = await apiClient.post<ReportResponse>("/api//v1/reports/", reportData);
+    const response = await apiClient.post<ReportResponse>("/api/v1/reports/", reportData);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
