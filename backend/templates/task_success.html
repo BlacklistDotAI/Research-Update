@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .high { color: red; font-weight: bold; }
+        .medium { color: orange; font-weight: bold; }
+        .low { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Kết quả kiểm tra giọng nói của bạn</h2>
+    <p><strong>Task ID:</strong> {{ task_id }}</p>
+    <p><strong>Mức độ rủi ro:</strong> <span class="{{ 'high' if result.risk_level == 'HIGH' else 'medium' if result.risk_level == 'MEDIUM' else 'low' }}">{{ result.risk_level }}</span></p>
+    <p><strong>Điểm số lừa đảo:</strong> {{ result.scam_score }} / 1.00</p>
+    <p><strong>Lý do:</strong></p>
+    <ul>
+        {% for reason in result.reasons %}
+        <li>{{ reason }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <small>Blacklist Voice Scam Detection System – Báo cáo tự động</small>
+</body>
+</html>

@@ -1,0 +1,668 @@
+{
+  "common": {
+    "appName": "Blacklist",
+    "tagline": "AI-powered scam voice detection",
+    "login": "Login",
+    "logout": "Logout",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "hero": {
+    "badge": "🛡️ Protect yourself from voice scams",
+    "title": "Protect yourself from phone call scams",
+    "subtitle": "Detect scams in seconds with AI technology. Upload an audio file to get instant risk analysis.",
+    "highlight": "",
+    "ctaPrimary": "Start checking now",
+    "ctaSecondary": "Learn more"
+  },
+  "landingAbout": {
+    "title": "About us",
+    "paragraph1": "Blacklist is an advanced technology platform using artificial intelligence to protect users from scam calls. We understand that phone scams are becoming a major threat in Vietnam, with thousands of people losing money each year.",
+    "paragraph2": "With AI voice recognition technology and machine learning, we analyze call content, detect common scam patterns and assess risk levels to help you make safe decisions. Our goal is to create a protective shield for every Vietnamese user."
+  },
+  "stats": {
+    "accuracy": "Detection Accuracy",
+    "speed": "Analysis Time",
+    "samples": "Scam Samples Recorded",
+    "uptime": "24/7 Operation"
+  },
+  "risks": {
+    "title": "Are you at risk?",
+    "description": "Phone scams are becoming a major threat in Vietnam. Every year, thousands of people lose money by believing in fake bank calls, prize notifications, or other tricks.",
+    "risk1": "Fake calls from \"banks\" requesting identity verification",
+    "risk2": "Prize notifications requiring transfer fees",
+    "risk3": "Requests for OTP codes or account passwords"
+  },
+  "features": {
+    "title": "Technology that protects you",
+    "description": "Using artificial intelligence and machine learning to automatically analyze and detect scam patterns",
+    "feature1Title": "Smart voice conversion",
+    "feature1Desc": "Advanced AI voice recognition technology converts calls to text with high accuracy, supporting multiple languages and Vietnamese dialects",
+    "feature2Title": "Scam pattern detection",
+    "feature2Desc": "Deep analysis system identifies common scam tactics: bank impersonation, prize notification calls, requests for sensitive information",
+    "feature3Title": "Instant risk assessment",
+    "feature3Desc": "ML algorithm calculates risk score from 0-100%, providing detailed warnings of suspicious signs to help you make safe decisions and protect your assets"
+  },
+  "howItWorks": {
+    "title": "How it works",
+    "description": "Just 3 simple steps to protect you from scams",
+    "step1Title": "Upload audio/video file",
+    "step1Desc": "Upload call recordings or videos containing voice to be analyzed",
+    "step2Title": "AI automatic analysis",
+    "step2Desc": "System converts voice to text and scans for scam indicators",
+    "step3Title": "Receive detailed report",
+    "step3Desc": "View transcript, risk score and warning list with specific explanations"
+  },
+  "cta": {
+    "title": "Protect yourself today",
+    "description": "Start checking immediately. Login only when you want to save your analysis history.",
+    "button": "Check for free now"
+  },
+  "nav": {
+    "features": "Features",
+    "howItWorks": "How it works",
+    "about": "About us",
+    "dashboard": "Get Started",
+    "files": "Files",
+    "profile": "Profile",
+    "loggedInAs": "Logged in as"
+  },
+  "pageLogin": {
+    "title": "Login",
+    "description": "Login or register an account to save analysis history and manage your files",
+    "email": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "submit": "Login",
+    "error": "Please enter a valid email address",
+    "noAccount": "Don't have an account?"
+  },
+  "pageRegister": {
+    "title": "Register",
+    "description": "Create a new account to save analysis history and manage your files",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "fullNameError": "Please enter your full name (at least 2 characters)",
+    "email": "Email",
+    "emailPlaceholder": "your.email@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Minimum 6 characters",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter password",
+    "submit": "Register",
+    "error": "Please enter a valid email address",
+    "passwordError": "Password must be at least 6 characters",
+    "passwordMatchError": "Passwords do not match",
+    "haveAccount": "Already have an account?"
+  },
+  "pageDashboard": {
+    "title": "Scan",
+    "description": "Upload audio or video files to analyze and detect scams",
+    "uploadTitle": "Upload file",
+    "analyzeTitle": "Analyze",
+    "resultsTitle": "Analysis Results",
+    "analyze": "Analyze",
+    "analyzing": "Analyzing...",
+    "selectFile": "Please select an audio or video file",
+    "analyzeError": "An error occurred while analyzing the file",
+    "fileSelected": "Selected",
+    "uploadHint": "Drag and drop file here or",
+    "uploadHint2": "select file",
+    "uploadButton": "Choose File",
+    "recordAudio": "Record Audio",
+    "uploadSupport": "Audio and video supported",
+    "saveHistory": "Save History",
+    "saveHistoryDesc": "Login to save your analysis history",
+    "loginToSave": "Login to Save",
+    "notLoggedIn": "You are not logged in",
+    "fileSaved": "File saved!",
+    "fileSavedDesc": "Your analysis file has been saved to history.",
+    "viewFiles": "View Files",
+    "verifyCaptcha": "Verify CAPTCHA",
+    "captchaTitle": "Security Verification",
+    "captchaVerifiedDesc": "Analyzing your file automatically...",
+    "fileTooLarge": "File too large! Maximum size is {{maxSize}}"
+  },
+  "results": {
+    "transcript": "Transcript",
+    "riskScore": "Confidence",
+    "warnings": "Warnings",
+    "isScam": "⚠️ This is a scam call",
+    "confidenceDescriptionScam": "The system is {{percent}}% confident that this audio is a scam.",
+    "confidenceDescriptionNotScam": "The system is {{percent}}% confident that this is normal audio.",
+    "confidenceDescriptionLow": "Low confidence level ({{percent}}%), needs further verification.",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "reasoningLabels": {
+      "Context": "Context",
+      "Behavioral indicators": "Behavioral indicators",
+      "Linguistic signals": "Linguistic signals",
+      "Emotional tone": "Emotional tone",
+      "Social engineering techniques": "Social engineering techniques",
+      "Information sensitivity": "Information sensitivity",
+      "Verification cues": "Verification cues",
+      "Consistency check": "Consistency check",
+      "Previous pattern match": "Previous pattern match",
+      "Risk assessment": "Risk assessment",
+      "Summary": "Summary"
+    },
+    "share": {
+      "title": "Share Result",
+      "description": "Share analysis result with friends",
+      "linkCopied": "Link copied!",
+      "notFound": "Share result not found",
+      "backToHome": "Back to home"
+    },
+    "blacklist": {
+      "title": "Add to Blacklist",
+      "description": "Help protect the community by adding this phone number to the blacklist",
+      "nameLabel": "Name",
+      "namePlaceholder": "Enter name (optional)",
+      "phoneLabel": "Phone Number",
+      "phonePlaceholder": "Enter phone number (optional)",
+      "optional": "optional",
+      "phoneHint": "Phone number must be 10 or 11 digits",
+      "phoneError": "Phone number must be 10 or 11 digits (numbers only)",
+      "nameRequired": "Please enter name when phone number is provided",
+      "phoneRequired": "Please enter phone number when name is provided",
+      "button": "Add to Blacklist",
+      "submitting": "Submitting...",
+      "success": "Successfully added to blacklist!",
+      "error": "An error occurred while adding to blacklist"
+    },
+    "safe": "Safe"
+  },
+  "footer": {
+    "description": "Protect yourself from voice scams with advanced AI technology",
+    "products": "Products",
+    "features": "Donate",
+    "pricing": "About Us",
+    "faq": "FAQs",
+    "resources": "Resources",
+    "documentation": "Documentation",
+    "guides": "Guides",
+    "blog": "Blog",
+    "support": "Support",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms",
+    "copyright": "© 2025 blacklist.vn. All rights reserved.",
+    "communityNote": "Built with ❤️ by the community team.",
+    "team": {
+      "title": "Project Team",
+      "description": "A community project developed by blacklist.vn team to detect scam content through AI audio analysis.",
+      "teamLead": "Team Lead",
+      "developer": "Developer",
+      "aiResearch": "AI Research",
+      "uiuxDesigner": "UI/UX Designer"
+    }
+  },
+  "pageFiles": {
+    "title": "File Management",
+    "description": "View and manage all your analysis files",
+    "files": "files",
+    "listTitle": "File List",
+    "empty": "No files yet. Start analyzing your first file!",
+    "selectFile": "Select a file to view details",
+    "selectFileHint": "Click on a file from the list on the left",
+    "delete": "Delete",
+    "confirmDelete": "Confirm Delete",
+    "cancel": "Cancel",
+    "deleteWarning": "Are you sure you want to delete this file? This action cannot be undone.",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "daysAgo": "days ago",
+    "risk": "Risk",
+    "riskScore": "Confidence",
+    "showList": "List",
+    "showDetail": "Detail",
+    "goToDashboard": "Go to Dashboard"
+  },
+  "pageCaptcha": {
+    "title": "Security Verification",
+    "description": "Please enter the verification code below to continue file analysis",
+    "enterCode": "Enter verification code",
+    "placeholder": "Enter 6 characters",
+    "verify": "Verify",
+    "refresh": "Refresh",
+    "success": "Verification successful!",
+    "error": "Incorrect verification code",
+    "tooManyAttempts": "Too many failed attempts. Please try again.",
+    "tryAgain": "Try Again"
+  },
+  "pageVoice": {
+    "title": "Voice Test - Scam Call Detection",
+    "description": "Record directly from your microphone to check if a call is a scam. Just press the record button and speak for 15 seconds.",
+    "startRecording": "🎤 Record 15s",
+    "stopRecording": "Stop Early",
+    "recording": "Recording...",
+    "recordingStatus": "Recording in progress",
+    "uploading": "Uploading...",
+    "reset": "Record Again",
+    "fileSize": "File size",
+    "audioNotSupported": "Your browser does not support audio playback.",
+    "results": "Analysis Results",
+    "error": {
+      "title": "An error occurred",
+      "microphone": "Cannot access microphone. Please check browser permissions in settings.",
+      "upload": "Failed to upload file. Please try again later."
+    },
+    "info": {
+      "title": "How to use",
+      "point1": "Click the \"Record 15s\" button and allow your browser to access your microphone.",
+      "point2": "Speak for up to 15 seconds (or click \"Stop Early\" if you want to finish earlier).",
+      "point3": "The audio file will be automatically uploaded and analyzed by the AI system.",
+      "point4": "Results will show confidence score and reasoning within a few seconds."
+    }
+  },
+  "pagePrivacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated",
+    "backToHome": "Back to Home",
+    "intro": {
+      "title": "Commitment Statement",
+      "content1": "Blacklist is a community project built with the sole purpose of protecting Vietnamese users from scam calls. We absolutely commit to not collecting, storing, or sharing any personal information of users.",
+      "content2": "This project serves community purposes, strictly complying with personal data protection regulations under Vietnamese law."
+    },
+    "purpose": {
+      "title": "Purpose of Use",
+      "content1": "Blacklist is developed with the following purposes:",
+      "point1": "Serve the community: Provide tools to help users detect scam calls",
+      "point2": "Educate users: Raise awareness about phone scam tactics",
+      "point3": "Protect the community: Contribute to reducing damage caused by scams"
+    },
+    "dataCollection": {
+      "title": "Data Collection and Storage",
+      "warning": "Commitment to No Data Storage",
+      "warningContent": "We absolutely commit to NOT storing any user data on servers or databases. All information is only temporarily stored on your browser.",
+      "content1": "Blacklist operates entirely on your browser (client-side). All data is stored locally on your device through standard web technologies:",
+      "localStorage": "Local Storage (localStorage)",
+      "localStoragePoint1": "User email (if logged in) - only stored on your browser",
+      "localStoragePoint2": "Personal profile information (name, email) - only stored on your browser",
+      "localStoragePoint3": "Analysis history of uploaded files - only stored on your browser"
+    },
+    "dataUsage": {
+      "title": "How Data is Used",
+      "content1": "Since all data is stored locally on your browser, we cannot and will never use your data for any purpose. Your data:",
+      "allowed": {
+        "title": "Allowed",
+        "point1": "Only used on your browser",
+        "point2": "Help you manage your analysis history",
+        "point3": "Improve your personal user experience"
+      },
+      "notAllowed": {
+        "title": "Not Allowed",
+        "point1": "Not sent to servers or databases",
+        "point2": "Not shared with any third parties",
+        "point3": "Not used for commercial or advertising purposes"
+      }
+    },
+    "compliance": {
+      "title": "Compliance with Vietnamese Law",
+      "content1": "Blacklist strictly complies with personal data protection regulations under Vietnamese law, including:",
+      "laws": {
+        "title": "Relevant Legal Documents",
+        "point1": "Cybersecurity Law No. 86/2015/QH13",
+        "point2": "Decree 13/2023/ND-CP on Personal Data Protection",
+        "point3": "Circular No. 20/2017/TT-BTTTT of the Ministry of Information and Communications"
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "content1": "If you have any questions about this privacy policy, please contact us:",
+      "email": "Email"
+    },
+    "footer": {
+      "title": "Final Commitment",
+      "content": "We commit to continuing to maintain the principle of not storing user data. This project will always be a tool serving the community, with no commercial purposes or data collection. Any changes to the privacy policy will be clearly announced on this website."
+    }
+  },
+  "pageTerms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last Updated",
+    "backToHome": "Back to Home",
+    "intro": {
+      "title": "Introduction",
+      "content1": "Welcome to Blacklist - a community project built to protect Vietnamese users from scam calls. By using this service, you agree to comply with the following terms.",
+      "content2": "This project is developed for community purposes, with no commercial intent. Use of the service must comply with Vietnamese law."
+    },
+    "acceptance": {
+      "title": "Acceptance of Terms",
+      "content1": "By accessing and using Blacklist, you acknowledge that you have read, understood, and agree to be bound by these terms of service. If you do not agree with any part of these terms, please do not use the service."
+    },
+    "service": {
+      "title": "Service Description",
+      "content1": "Blacklist provides the following services:",
+      "point1": "Audio analysis to detect potential scam indicators",
+      "point2": "Provide information and warnings about risk levels",
+      "point3": "Educate and raise awareness about scam tactics"
+    },
+    "responsibilities": {
+      "title": "User Responsibilities",
+      "content1": "When using Blacklist, you are responsible for:",
+      "point1": "Using the service legally and in accordance with its intended purpose",
+      "point2": "Not using the service to perform illegal or fraudulent activities",
+      "point3": "Being responsible for the audio files you upload and ensuring you have the right to use them",
+      "point4": "Not attempting to interfere, break, or disrupt the service"
+    },
+    "limitations": {
+      "title": "Limitation of Liability",
+      "warning": "Important Warning",
+      "warningContent": "Blacklist is a support tool and cannot guarantee 100% accuracy. Analysis results are for reference only and do not replace human judgment.",
+      "content1": "We are not responsible for:",
+      "point1": "Any damages arising from the use or inability to use the service",
+      "point2": "Decisions made based on the system's analysis results",
+      "point3": "The accuracy or completeness of information provided"
+    },
+    "intellectual": {
+      "title": "Intellectual Property",
+      "content1": "All content, source code, design, and other assets of Blacklist are the property of this community project. You may not copy, distribute, or reuse without prior written permission."
+    },
+    "modifications": {
+      "title": "Modifications to Terms",
+      "content1": "We reserve the right to modify these terms at any time. Changes will take effect immediately upon posting on the website. Your continued use of the service after the terms are updated means you accept those changes."
+    },
+    "contact": {
+      "title": "Contact",
+      "content1": "If you have any questions about these terms of service, please contact us:",
+      "email": "Email"
+    },
+    "footer": {
+      "title": "Conclusion",
+      "content": "Thank you for using Blacklist. This project is built to serve the community and protect Vietnamese users from scams. We commit to maintaining a transparent service that does not collect data and serves the public interest."
+    }
+  },
+  "pageCookieConsent": {
+    "title": "Cookies & Privacy",
+    "description": "We use cookies to store your login information on your browser. Data is only stored locally and not sent to servers.",
+    "learnMore": "Learn more in our",
+    "privacyPolicy": "Privacy Policy",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "pageNotFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved.",
+    "goHome": "Go Home",
+    "goBack": "Go Back",
+    "helpfulLinks": "Helpful Links",
+    "home": "Home",
+    "voiceTest": "Voice Test",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "We are always ready to listen to your opinions, questions and feedback.",
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "responseTime": "Response Time",
+      "responseTimeDesc": "We will respond within 24-48 hours",
+      "note": {
+        "title": "Note",
+        "content": "As this is a community project, responses may take longer. We will try to respond as soon as possible."
+      }
+    },
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "subjectOptions": {
+        "general": "General Question",
+        "support": "Technical Support",
+        "bug": "Report Bug",
+        "feedback": "Feedback",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Enter your message...",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Thank you! Your message has been sent successfully."
+    }
+  },
+  "pageContact": {
+    "title": "Contact Us",
+    "description": "We are always ready to listen to your opinions, questions and feedback.",
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "responseTime": "Response Time",
+      "responseTimeDesc": "We will respond within 24-48 hours",
+      "note": {
+        "title": "Note",
+        "content": "As this is a community project, responses may take longer. We will try to respond as soon as possible."
+      }
+    },
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "subjectOptions": {
+        "general": "General Question",
+        "support": "Technical Support",
+        "bug": "Report Bug",
+        "feedback": "Feedback",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Enter your message...",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Thank you! Your message has been sent successfully."
+    }
+  },
+  "pageProfile": {
+    "title": "Profile",
+    "description": "Manage your personal information",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "fullNameError": "Full name must be at least 2 characters",
+    "email": "Email",
+    "emailPlaceholder": "email@example.com",
+    "emailError": "Invalid email",
+    "save": "Save Changes",
+    "saving": "Saving...",
+    "saveSuccess": "Saved successfully!",
+    "exportSuccess": "Data exported successfully!",
+    "deleteSuccess": "All data has been deleted. You will be redirected to the login page.",
+    "dataManagement": {
+      "title": "Data Management",
+      "description": "You have the right to export or delete all your data according to GDPR regulations.",
+      "export": {
+        "title": "Export Data",
+        "description": "Download a JSON file containing all your data (profile, files, history)",
+        "button": "Export Data"
+      },
+      "delete": {
+        "title": "Delete All Data",
+        "description": "Permanently delete all your data including profile, files and history. This action cannot be undone.",
+        "button": "Delete All Data",
+        "confirm": "Are you sure you want to delete all data? This action cannot be undone.",
+        "confirmYes": "Yes, Delete All",
+        "confirmNo": "Cancel"
+      }
+    }
+  },
+  "about": {
+    "pageTitle": "About Us",
+    "pageDescription": "Community project collaboration between 3 teams to protect Vietnamese users from scams",
+    "mission": {
+      "title": "Mission",
+      "content1": "Blacklist is a community project developed through collaboration between 3 teams: Gianty, Uway and Techainer. Our goal is to protect Vietnamese users from scam calls through advanced AI technology.",
+      "content2": "We commit to providing a tool that completely serves the community, with no commercial purpose, does not collect user data, and strictly complies with Vietnamese regulations."
+    },
+    "partnership": {
+      "title": "Partnership",
+      "content1": "This project is the result of collaboration between 3 development teams:",
+      "note": "Important Note",
+      "noteContent": "Blacklist is not a company or commercial organization. This is a non-profit community project developed through voluntary collaboration between teams."
+    },
+    "technology": {
+      "title": "Technology",
+      "content1": "We use advanced technologies to detect scams:",
+      "ai": {
+        "title": "Artificial Intelligence",
+        "description": "Using AI and machine learning to analyze audio and detect scam patterns"
+      },
+      "security": {
+        "title": "Security",
+        "description": "All data is processed locally on your browser, not stored on servers"
+      }
+    },
+    "commitment": {
+      "title": "Commitment",
+      "point1": "Serve the community: Project is completely non-profit, with no commercial purpose",
+      "point2": "Data security: Absolutely committed to not storing any personal information",
+      "point3": "Legal compliance: Strictly comply with Vietnamese regulations",
+      "point4": "Transparency: Open about how it works and usage terms"
+    },
+    "contact": {
+      "title": "Contact",
+      "content1": "If you have questions or want to contribute to the project, please contact us:",
+      "button": "Contact Now"
+    },
+    "backToHome": "Back to Home"
+  },
+  "pageFaq": {
+    "title": "Frequently Asked Questions",
+    "description": "Find answers to common questions about Blacklist",
+    "item1": {
+      "question": "What is Blacklist?",
+      "answer": "Blacklist is a community project that uses AI technology to detect scam calls. The project is developed through collaboration between 3 teams: Gianty, Uway and Techainer with the goal of protecting Vietnamese users."
+    },
+    "item2": {
+      "question": "Is Blacklist free?",
+      "answer": "Yes, Blacklist completely serves the community and is free of charge. This is a non-profit project developed through voluntary collaboration between teams."
+    },
+    "item3": {
+      "question": "Is my data stored?",
+      "answer": "No, we absolutely commit to not storing any user data on servers or databases. All information is only temporarily stored on your browser if you log in."
+    },
+    "item4": {
+      "question": "What is the accuracy of the system?",
+      "answer": "The system uses AI technology to analyze and provide results with a confidence score. However, results are for reference only and do not replace human judgment. You should consider carefully before making important decisions."
+    },
+    "item5": {
+      "question": "Do I need to log in to use?",
+      "answer": "No, you can use the analysis service immediately without logging in. However, if you want to save analysis history for later review, you can log in with email."
+    },
+    "item6": {
+      "question": "Is Blacklist a company?",
+      "answer": "No, Blacklist is not a company or commercial organization. This is a non-profit community project developed through voluntary collaboration between teams: Gianty, Uway and Techainer."
+    },
+    "item7": {
+      "question": "How to export or delete my data?",
+      "answer": "You can export or delete all your data on the Profile page. This feature complies with GDPR regulations on user rights regarding personal data."
+    },
+    "item8": {
+      "question": "Can I contribute to the project?",
+      "answer": "Yes, if you want to contribute to the project or have questions, please contact us through the Contact page. We welcome all contributions from the community."
+    },
+    "contact": {
+      "title": "Still have questions?",
+      "description": "If you don't find the answer in the FAQ, please contact us",
+      "button": "Contact Now"
+    }
+  },
+  "donate": {
+    "pageTitle": "Contribute",
+    "pageDescription": "Contribute to Blacklist community project - Skills, Time, Projects/Data, Infrastructure or Financial Commitment",
+    "header": "You can contribute in many ways: donate skills & time, send projects/data sources for the Software/AI team to deploy, provide infrastructure, or make a financial commitment (processed according to legal regulations). All contributions are valuable.",
+    "leftColumn": {
+      "title": "Choose contribution method",
+      "subtitle": "You can choose one or more methods. Fill in the information in the form on the right.",
+      "dataProtection": "Your data is protected. Blacklist has public & private; receiving money will follow a separate legal process.",
+      "compliance": "Compliance: anti-abuse, anti-defamation, complaint & correction mechanism."
+    },
+    "types": {
+      "skillsTime": {
+        "title": "Skills & Time",
+        "description": "AI • Software • Design • Product • Legal • Moderation"
+      },
+      "projectData": {
+        "title": "Projects / Data Sources",
+        "description": "Feed for Software/AI team, data standardization & usage rights"
+      },
+      "infrastructure": {
+        "title": "Infrastructure (Infra)",
+        "description": "GPU • Storage • Bandwidth • Monitoring • CDN"
+      },
+      "financial": {
+        "title": "Financial Commitment",
+        "description": "Maintain infrastructure & develop software (according to legal regulations)"
+      }
+    },
+    "form": {
+      "title": "Contribution Form",
+      "subtitle": "Please fill in accurate information so we can connect the right people for the right job.",
+      "fields": {
+        "fullName": "Full Name",
+        "fullNamePlaceholder": "John Doe",
+        "email": "Email",
+        "emailPlaceholder": "you@domain.com",
+        "phone": "Phone Number",
+        "phonePlaceholder": "(+1) xxx xxx xxxx",
+        "organization": "Organization/Unit (if any)",
+        "organizationPlaceholder": "Company / Community / School",
+        "contributionTypes": "Contribution methods of interest",
+        "skills": "Skills you can contribute",
+        "timeCommitment": "Time commitment",
+        "referralLink": "Referral Link",
+        "referralLinkPlaceholder": "LinkedIn / GitHub / Portfolio",
+        "notes": "Notes",
+        "notesPlaceholder": "Specify experience related to moderation, complaint handling, NLP, knowledge graph..."
+      },
+      "skills": {
+        "ai-ml": "AI/ML",
+        "software": "Software (FE/BE)",
+        "design-ux": "Design/UX",
+        "product": "Product",
+        "data-bi": "Data/BI",
+        "security-legal": "Security/Legal",
+        "moderation": "Moderation",
+        "growth-content": "Growth/Content"
+      },
+      "timeCommitment": {
+        "ad-hoc": "Ad-hoc / Small task",
+        "part-time": "Part-time",
+        "full-time": "Temporary full-time (by sprint)"
+      },
+      "agreement1": "I confirm the information provided is accurate; I agree for Blacklist.vn to contact me & process data according to the Privacy Policy.",
+      "agreement2": "I commit not to abuse Blacklist.vn to defame, attack individuals; all accusations will be accompanied by evidence and respect the complaint process.",
+      "captchaPlaceholder": "reCAPTCHA/Turnstile placeholder — add later in production environment.",
+      "submit": "Send contribution registration",
+      "submitting": "Submitting...",
+      "support": "Need support? Contact",
+      "supportEmail": "info@blacklist.vn",
+      "success": {
+        "title": "Registration successful!",
+        "message": "Thank you for your contribution. We will contact you as soon as possible."
+      },
+      "validation": {
+        "fullNameRequired": "Please enter your full name",
+        "emailRequired": "Please enter your email",
+        "emailInvalid": "Invalid email address",
+        "contributionTypesRequired": "Please select at least one contribution method",
+        "agreement1Required": "Please confirm agreement with the first term",
+        "agreement2Required": "Please confirm agreement with the second term",
+        "captchaRequired": "Please verify CAPTCHA before submitting the form"
+      },
+      "error": {
+        "message": "An error occurred while submitting the form. Please try again later or contact hello@blacklist.vn"
+      }
+    }
+  },
+  "tutorial": {
+    "title": "How to Use",
+    "description": "Watch our tutorial video to learn how to use Blacklist.vn to protect yourself from voice scams",
+    "note": "Click on the video to watch the detailed tutorial"
+  }
+}
+

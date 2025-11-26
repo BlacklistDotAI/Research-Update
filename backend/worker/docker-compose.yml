@@ -1,0 +1,18 @@
+# docker-compose.yml for standalone worker deployment
+# Deploy workers on separate VPS, Kubernetes, Fly.io, Render, etc.
+version: '3.9'
+services:
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    environment:
+      - SERVER_URL=${SERVER_URL}
+      - WORKER_TOKEN=${WORKER_TOKEN}
+      - WORKER_ID=${WORKER_ID:-worker}
+      - POLL_INTERVAL=${POLL_INTERVAL:-5}
+      - REQUEST_TIMEOUT=${REQUEST_TIMEOUT:-30}
+    restart: unless-stopped
+    deploy:
+      replicas: 10 # Scale as needed

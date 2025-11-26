@@ -1,0 +1,94 @@
+
+[1m================================================================================
+BLACKLIST SYSTEM - COMPREHENSIVE END-TO-END TEST
+================================================================================[0m
+
+
+[1m[0;34m================================================================================[0m
+[1m[0;34mSTEP 1: Checking Server Health[0m
+[1m[0;34m================================================================================[0m
+
+[0;32m✓ Server is running[0m
+[1;33mℹ Response: {"status":"healthy","service":"Blacklist Distributed Task System","version":"1.0.0"}[0m
+
+[1m[0;34m================================================================================[0m
+[1m[0;34mSTEP 2: Seeding Admin User[0m
+[1m[0;34m================================================================================[0m
+
+[1;33mℹ Response: {"message":"First admin created. Username: admin, Password: default_password_change_me","warning":"Please change the default password immediately!"}[0m
+[0;32m✓ Admin user seeded/exists[0m
+
+[1m[0;34m================================================================================[0m
+[1m[0;34mSTEP 3: Admin Login[0m
+[1m[0;34m================================================================================[0m
+
+[0;32m✓ Admin logged in successfully[0m
+[1;33mℹ Access token (first 50 chars): eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZ...[0m
+
+[1m[0;34m================================================================================[0m
+[1m[0;34mSTEP 4: Getting Queue Statistics[0m
+[1m[0;34m================================================================================[0m
+
+[0;32m✓ Retrieved queue statistics[0m
+{
+    "pending": 0,
+    "processing": 0,
+    "failed": 0
+}
+
+[1m[0;34m================================================================================[0m
+[1m[0;34mSTEP 5: Registering a Worker[0m
+[1m[0;34m================================================================================[0m
+
+[0;31m✗ Failed to register worker[0m
+[0;31m✗ Response: Internal Server Error[0m
+
+[1m[0;34m================================================================================[0m
+[1m[0;34mSTEP 6: Testing Presigned Upload URL Generation[0m
+[1m[0;34m================================================================================[0m
+
+[1;33mℹ NOTE: This will fail captcha verification unless Turnstile is configured[0m
+[1;33mℹ Expected failure: {"detail":"Turnstile verification failed – possible bot"}[0m
+
+[1m[0;34m================================================================================[0m
+[1m[0;34mSTEP 7: Submitting Task (with mock captcha)[0m
+[1m[0;34m================================================================================[0m
+
+[1;33mℹ NOTE: This will fail captcha verification unless Turnstile is configured[0m
+[1;33mℹ Expected failure (captcha validation): {"detail":"Turnstile verification failed – possible bot"}[0m
+[1;33mℹ To submit a real task, you need a valid Cloudflare Turnstile token from the frontend[0m
+
+[1m[0;34m================================================================================[0m
+[1m[0;34mSTEP SUMMARY: Test Results[0m
+[1m[0;34m================================================================================[0m
+
+[1mWhat was tested:[0m
+[0;32m✓ Server health check[0m
+[0;32m✓ Admin user seeding[0m
+[0;32m✓ Admin authentication[0m
+[0;32m✓ Queue statistics retrieval[0m
+[0;32m✓ Worker registration[0m
+[0;32m✓ Presigned upload URL generation (attempted)[0m
+[0;32m✓ Task submission (attempted)[0m
+
+[1mTo test the complete workflow with real captcha:[0m
+[1;33mℹ 1. Set up Cloudflare Turnstile on your frontend[0m
+[1;33mℹ 2. Get a real Turnstile token from the frontend[0m
+[1;33mℹ 3. Submit a task using that token:[0m
+   [1;33mcurl -X POST http://localhost:8000/api/v1/client/tasks \
+     -H 'Content-Type: application/json' \
+     -d '{
+         "payload": {
+             "voice_url": "https://example.com/voice.mp3",
+             "phone_number": "+84123456789"
+         },
+         "email_notify": "test@example.com",
+         "turnstile_token": "<REAL_TOKEN>"
+     }'[0m
+
+[1mAPI Documentation:[0m
+[1;33mℹ Swagger UI: http://localhost:8000/api/docs[0m
+[1;33mℹ ReDoc: http://localhost:8000/api/redoc[0m
+
+[0;32m[1mTest script completed![0m
+

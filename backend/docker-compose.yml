@@ -1,0 +1,96 @@
+version: '3.9'
+name: "blacklist"
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    container_name: blacklist_postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_MAX_CONNECTIONS: 5000
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - blacklist-network
+
+  # Redis Cache & Queue
+  redis:
+    image: redis:8-alpine
+    restart: unless-stopped
+    container_name: blacklist_redis
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel notice --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--pass", "${REDIS_PASSWORD}", "ping" ]
+      interval: 5s
+      timeout: 2s
+      retries: 10
+    networks:
+      - blacklist-network
+
+  # Main API Server
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: blacklist-server:latest
+    restart: unless-stopped
+    container_name: blacklist_server
+    ports:
+      - "8000:8000"
+    env_file: .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/health', timeout=5)" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - blacklist-network
+
+  # Janitor Service (Zombie Task Cleanup)
+  janitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: blacklist-server:latest
+    restart: unless-stopped
+    container_name: blacklist_janitor
+    command: python -m janitor.janitor
+    env_file: .env
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    networks:
+      - blacklist-network
+
+volumes:
+  pg_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  blacklist-network:
+    driver: bridge

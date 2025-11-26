@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Blacklist - AI phát hiện lừa đảo qua giọng nói</title>
+    <meta name="title" content="Blacklist - AI phát hiện lừa đảo qua giọng nói" />
+    <meta name="description" content="Bảo vệ bạn khỏi lừa đảo qua cuộc gọi với công nghệ AI tiên tiến. Phân tích giọng nói, phát hiện mẫu lừa đảo và đánh giá rủi ro tự động." />
+    <meta name="keywords" content="AI, scam detection, voice analysis, lừa đảo, phát hiện lừa đảo, trí tuệ nhân tạo, bảo mật, an toàn, chống lừa đảo, voice scam" />
+    <meta name="author" content="blacklist" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://blacklist.vn/" />
+    <meta property="og:title" content="Blacklist - AI phát hiện lừa đảo qua giọng nói" />
+    <meta property="og:description" content="Bảo vệ bạn khỏi lừa đảo qua cuộc gọi với công nghệ AI tiên tiến" />
+    <meta property="og:image" content="https://blacklist.vn/og-image.jpg" />
+    <meta property="og:site_name" content="Blacklist" />
+    <meta property="og:locale" content="vi_VN" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://blacklist.vn/" />
+    <meta property="twitter:title" content="blacklist.vn - AI phát hiện lừa đảo qua giọng nói" />
+    <meta property="twitter:description" content="Bảo vệ bạn khỏi lừa đảo qua cuộc gọi với công nghệ AI tiên tiến" />
+    <meta property="twitter:image" content="https://blacklist.vn/og-image.jpg" />
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#111827" />
+    <link rel="canonical" href="https://blacklist.vn/" />
+    
+    <!-- Google Analytics - Will be initialized by React component if VITE_GA_MEASUREMENT_ID is set -->
+    <!-- Note: Script is loaded dynamically by GoogleAnalytics component -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Note: Share URLs are handled by API route /api/share/[id].ts -->
+    <!-- This script is just a fallback for client-side rendering -->
+    <script>
+      (function() {
+        // Only for share URLs - update meta tags as fallback
+        if (window.location.pathname.startsWith('/share/')) {
+          const urlParams = new URLSearchParams(window.location.search);
+          const score = urlParams.get('s') || '0';
+          const flagged = urlParams.get('f') === '1';
+          
+          const status = flagged ? 'Lừa đảo' : 'An toàn';
+          const title = status + ' - Điểm rủi ro: ' + score + '% | Blacklist.vn';
+          const description = status + ' - Điểm rủi ro: ' + score + '%. Kết quả phân tích lừa đảo qua giọng nói với công nghệ AI tiên tiến.';
+          const shareUrl = window.location.href;
+          const imageUrl = window.location.origin + '/api/og-image?score=' + score + '&flagged=' + (flagged ? '1' : '0');
+          
+          // Update or create meta tags for crawlers (fallback only)
+          function updateMeta(name, content, isProperty) {
+            const attr = isProperty ? 'property' : 'name';
+            let meta = document.querySelector('meta[' + attr + '="' + name + '"]');
+            if (!meta) {
+              meta = document.createElement('meta');
+              meta.setAttribute(attr, name);
+              document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', content);
+          }
+          
+          // Update title
+          document.title = title;
+          
+          // Update Open Graph tags
+          updateMeta('og:title', title, true);
+          updateMeta('og:description', description, true);
+          updateMeta('og:url', shareUrl, true);
+          updateMeta('og:image', imageUrl, true);
+          
+          // Update Twitter tags
+          updateMeta('twitter:title', title, false);
+          updateMeta('twitter:description', description, false);
+          updateMeta('twitter:url', shareUrl, false);
+          updateMeta('twitter:image', imageUrl, false);
+          
+          // Update description
+          updateMeta('description', description, false);
+        }
+      })();
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

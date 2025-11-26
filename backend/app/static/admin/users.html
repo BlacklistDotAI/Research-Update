@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Users - Blacklist Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/admin/css/admin.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+</head>
+
+<body
+    class="bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-white min-h-screen flex overflow-hidden transition-colors duration-300">
+
+    <!-- Sidebar -->
+    <aside
+        class="w-64 bg-white/80 dark:bg-slate-800/50 backdrop-blur-xl border-r border-gray-200 dark:border-white/10 flex flex-col transition-all duration-300 z-20">
+        <div class="h-16 flex items-center px-6 border-b border-gray-200 dark:border-white/10">
+            <div
+                class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+                <span class="material-icons-round text-white text-sm">admin_panel_settings</span>
+            </div>
+            <span class="font-bold text-lg tracking-wide">Blacklist<span class="text-blue-400">.AI</span></span>
+        </div>
+
+        <nav class="flex-1 py-6 px-3 space-y-1 overflow-y-auto">
+            <a href="/static/admin/index.html"
+                class="flex items-center px-4 py-3 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-blue-600 dark:hover:text-white transition-all group">
+                <span class="material-icons-round mr-3 group-hover:text-blue-400 transition-colors">dashboard</span>
+                <span class="font-medium">Dashboard</span>
+            </a>
+
+            <div class="pt-4 pb-2 px-4 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                Management</div>
+
+            <a href="/static/admin/reports.html"
+                class="flex items-center px-4 py-3 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-purple-600 dark:hover:text-white transition-all group">
+                <span
+                    class="material-icons-round mr-3 group-hover:text-purple-400 transition-colors">phone_iphone</span>
+                <span class="font-medium">Phone Reports</span>
+            </a>
+
+            <a href="/static/admin/tasks.html"
+                class="flex items-center px-4 py-3 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-yellow-600 dark:hover:text-white transition-all group">
+                <span class="material-icons-round mr-3 group-hover:text-yellow-400 transition-colors">task</span>
+                <span class="font-medium">Task Queue</span>
+            </a>
+
+            <a href="/static/admin/workers.html"
+                class="flex items-center px-4 py-3 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 hover:text-green-600 dark:hover:text-white transition-all group">
+                <span class="material-icons-round mr-3 group-hover:text-green-400 transition-colors">engineering</span>
+                <span class="font-medium">Workers</span>
+            </a>
+
+            <div class="pt-4 pb-2 px-4 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                System</div>
+
+            <a href="/static/admin/users.html"
+                class="flex items-center px-4 py-3 rounded-xl bg-pink-50 dark:bg-pink-600/20 text-pink-600 dark:text-pink-400 border border-pink-200 dark:border-pink-500/30 shadow-lg shadow-pink-500/10">
+                <span class="material-icons-round mr-3">people</span>
+                <span class="font-medium">Admin Users</span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-gray-200 dark:border-white/10">
+            <div
+                class="flex items-center p-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/5">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-orange-500 flex items-center justify-center text-white font-bold shadow-md"
+                    id="userAvatar">A</div>
+                <div class="ml-3 flex-1 overflow-hidden">
+                    <p class="text-sm font-medium text-gray-900 dark:text-white truncate" id="userName">Admin</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 truncate">Superuser</p>
+                </div>
+                <button onclick="logout()"
+                    class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-white/10 text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+                    title="Logout">
+                    <span class="material-icons-round text-xl">logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <!-- Background Blobs -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+            <div
+                class="absolute top-0 left-1/4 w-96 h-96 bg-pink-500/10 rounded-full mix-blend-overlay filter blur-3xl animate-blob">
+            </div>
+            <div
+                class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-overlay filter blur-3xl animate-blob animation-delay-2000">
+            </div>
+        </div>
+
+        <!-- Topbar -->
+        <header
+            class="h-16 flex items-center justify-between px-8 border-b border-gray-200 dark:border-white/5 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Admin Users</h2>
+            <div class="flex items-center space-x-4">
+                <button onclick="showCreateUserModal()"
+                    class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium transition-colors shadow-lg shadow-blue-500/20 flex items-center">
+                    <span class="material-icons-round text-sm mr-2">add</span>
+                    Add User
+                </button>
+                <button id="themeToggle"
+                    class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                    <span class="material-icons-round">dark_mode</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="flex-1 overflow-y-auto p-8">
+
+            <!-- Users Table -->
+            <div class="glass-card rounded-2xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr
+                                class="text-xs text-gray-500 dark:text-gray-400 uppercase border-b border-gray-200 dark:border-white/5 bg-gray-50/50 dark:bg-white/5">
+                                <th class="px-6 py-4 font-medium">User</th>
+                                <th class="px-6 py-4 font-medium">Role</th>
+                                <th class="px-6 py-4 font-medium">Status</th>
+                                <th class="px-6 py-4 font-medium text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-gray-200 dark:divide-white/5" id="usersTableBody">
+                            <tr>
+                                <td colspan="4" class="px-6 py-8 text-center text-gray-500">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Create/Edit User Modal -->
+    <div id="createUserModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="hideCreateUserModal()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md">
+            <div class="glass-card p-6 rounded-2xl shadow-2xl bg-white dark:bg-slate-900">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4" id="modalTitle">Create New Admin</h3>
+                <form id="createUserForm" onsubmit="handleSaveUser(event)">
+                    <input type="hidden" id="userId">
+                    <div class="mb-4">
+                        <label class="block text-sm text-gray-500 dark:text-gray-400 mb-1">Username</label>
+                        <input type="text" id="newUsername" required
+                            class="w-full bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500/50">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm text-gray-500 dark:text-gray-400 mb-1">Email</label>
+                        <input type="email" id="newEmail" required
+                            class="w-full bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500/50">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm text-gray-500 dark:text-gray-400 mb-1">Full Name</label>
+                        <input type="text" id="newFullName"
+                            class="w-full bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500/50">
+                    </div>
+                    <!-- Password Section -->
+                    <div class="mb-6 border-t border-gray-200 dark:border-white/10 pt-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <label class="flex items-center cursor-pointer">
+                                <div class="relative">
+                                    <input type="checkbox" id="changePasswordToggle" class="sr-only"
+                                        onchange="togglePasswordFields()">
+                                    <div
+                                        class="w-10 h-6 bg-gray-200 dark:bg-slate-700 rounded-full shadow-inner transition-colors toggle-bg">
+                                    </div>
+                                    <div
+                                        class="dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow transition-transform">
+                                    </div>
+                                </div>
+                                <div class="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300">Change Password
+                                </div>
+                            </label>
+                        </div>
+
+                        <div id="passwordFields" class="hidden space-y-4 transition-all duration-300">
+                            <!-- Current Password (Required for self-edit) -->
+                            <div id="currentPasswordGroup" class="hidden">
+                                <label class="block text-sm text-gray-500 dark:text-gray-400 mb-1">Current Password
+                                    <span class="text-red-400">*</span></label>
+                                <input type="password" id="currentPassword"
+                                    class="w-full bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500/50">
+                                <p class="text-xs text-gray-400 mt-1">Required to verify your identity.</p>
+                            </div>
+
+                            <!-- New Password -->
+                            <div>
+                                <label class="block text-sm text-gray-500 dark:text-gray-400 mb-1">New Password <span
+                                        class="text-red-400">*</span></label>
+                                <input type="password" id="newPassword" minlength="8"
+                                    class="w-full bg-gray-50 dark:bg-slate-800/50 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2 text-gray-900 dark:text-white focus:outline-none focus:border-blue-500/50">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end gap-3">
+                        <button type="button" onclick="hideCreateUserModal()"
+                            class="px-4 py-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Cancel</button>
+                        <button type="submit"
+                            class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition-colors">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Toggle Switch Styles */
+        input:checked~.toggle-bg {
+            background-color: #3b82f6;
+        }
+
+        input:checked~.dot {
+            transform: translateX(100%);
+        }
+    </style>
+
+    <script src="/static/admin/js/auth.js"></script>
+    <script src="/static/admin/js/api.js"></script>
+    <script src="/static/admin/js/theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            requireAuth();
+            loadUserInfo();
+            loadUsers();
+        });
+
+        function togglePasswordFields() {
+            const isChecked = document.getElementById('changePasswordToggle').checked;
+            const passwordFields = document.getElementById('passwordFields');
+            const newPassword = document.getElementById('newPassword');
+            const currentPassword = document.getElementById('currentPassword');
+            const userId = document.getElementById('userId').value;
+            const currentUsername = localStorage.getItem('admin_user');
+            const editingUsername = document.getElementById('newUsername').value;
+            const isSelf = userId && currentUsername === editingUsername;
+
+            if (isChecked) {
+                passwordFields.classList.remove('hidden');
+                newPassword.required = true;
+
+                if (isSelf) {
+                    document.getElementById('currentPasswordGroup').classList.remove('hidden');
+                    currentPassword.required = true;
+                } else {
+                    document.getElementById('currentPasswordGroup').classList.add('hidden');
+                    currentPassword.required = false;
+                }
+            } else {
+                passwordFields.classList.add('hidden');
+                newPassword.required = false;
+                currentPassword.required = false;
+                newPassword.value = '';
+                currentPassword.value = '';
+            }
+        }
+
+        function loadUserInfo() {
+            const username = localStorage.getItem('admin_user') || 'Admin';
+            document.getElementById('userName').textContent = username;
+            document.getElementById('userAvatar').textContent = username.charAt(0).toUpperCase();
+        }
+
+        let currentUserList = [];
+
+        async function loadUsers() {
+            const tbody = document.getElementById('usersTableBody');
+
+            try {
+                const response = await api.get('/admin/users');
+                currentUserList = response || [];
+
+                if (!currentUserList.length) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="text-center py-8 text-gray-500">No users found</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = currentUserList.map(user => `
+                    <tr class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-600 dark:text-pink-400 mr-3">
+                                    <span class="font-bold text-xs">${user.username.charAt(0).toUpperCase()}</span>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900 dark:text-white">${user.username}</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">${user.email}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 rounded-md bg-gray-100 dark:bg-white/5 text-xs text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-white/10">
+                                ${user.is_superuser ? 'Superuser' : 'Admin'}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 rounded-full ${user.is_active ? 'bg-green-500/20 text-green-600 dark:text-green-400' : 'bg-red-500/20 text-red-600 dark:text-red-400'} text-xs border ${user.is_active ? 'border-green-500/20' : 'border-red-500/20'}">
+                                ${user.is_active ? 'Active' : 'Inactive'}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <button onclick="editUser(${user.id})" class="text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 p-2 hover:bg-blue-500/10 rounded-lg transition-colors mr-1" title="Edit">
+                                <span class="material-icons-round text-sm">edit</span>
+                            </button>
+                            <button onclick="deleteUser(${user.id})" class="text-red-500 dark:text-red-400 hover:text-red-600 dark:hover:text-red-300 p-2 hover:bg-red-500/10 rounded-lg transition-colors" title="Delete">
+                                <span class="material-icons-round text-sm">delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+
+            } catch (error) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center py-8 text-red-400">Error loading users</td></tr>';
+            }
+        }
+
+        function showCreateUserModal() {
+            document.getElementById('modalTitle').textContent = 'Create New Admin';
+            document.getElementById('userId').value = '';
+            document.getElementById('newUsername').value = '';
+            document.getElementById('newUsername').disabled = false;
+            document.getElementById('newEmail').value = '';
+            document.getElementById('newFullName').value = '';
+
+            // Reset Password Fields
+            document.getElementById('changePasswordToggle').checked = true; // Always show for create
+            document.getElementById('changePasswordToggle').disabled = true; // Cannot uncheck for create
+            togglePasswordFields();
+
+            document.getElementById('createUserModal').classList.remove('hidden');
+        }
+
+        function editUser(id) {
+            const user = currentUserList.find(u => u.id === id);
+            if (!user) return;
+
+            document.getElementById('modalTitle').textContent = 'Edit Admin';
+            document.getElementById('userId').value = user.id;
+            document.getElementById('newUsername').value = user.username;
+            document.getElementById('newUsername').disabled = true; // Cannot change username
+            document.getElementById('newEmail').value = user.email;
+            document.getElementById('newFullName').value = user.full_name || '';
+
+            // Reset Password Fields
+            document.getElementById('changePasswordToggle').checked = false;
+            document.getElementById('changePasswordToggle').disabled = false;
+            togglePasswordFields();
+
+            document.getElementById('createUserModal').classList.remove('hidden');
+        }
+
+        function hideCreateUserModal() {
+            document.getElementById('createUserModal').classList.add('hidden');
+        }
+
+        async function handleSaveUser(e) {
+            e.preventDefault();
+
+            const userId = document.getElementById('userId').value;
+            const isEdit = !!userId;
+
+            const data = {
+                username: document.getElementById('newUsername').value,
+                email: document.getElementById('newEmail').value,
+                full_name: document.getElementById('newFullName').value,
+            };
+
+            const password = document.getElementById('newPassword').value;
+            if (password) {
+                data.password = password;
+                const currentPassword = document.getElementById('currentPassword').value;
+                if (currentPassword) {
+                    data.current_password = currentPassword;
+                }
+            }
+
+            try {
+                if (isEdit) {
+                    await api.put(`/admin/users/${userId}`, data);
+                } else {
+                    await api.post('/admin/users', data);
+                }
+
+                hideCreateUserModal();
+                document.getElementById('createUserForm').reset();
+                loadUsers();
+            } catch (error) {
+                alert('Failed to save user: ' + error.message);
+            }
+        }
+
+        async function deleteUser(id) {
+            if (!confirm('Are you sure you want to delete this user?')) return;
+            try {
+                await api.delete(`/admin/users/${id}`);
+                loadUsers();
+            } catch (error) {
+                alert('Failed to delete user: ' + error.message);
+            }
+        }
+    </script>
+</body>
+
+</html>

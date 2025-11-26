@@ -1,0 +1,16 @@
+boto3==1.40.75
+botocore==1.40.75
+fastapi==0.121.2
+fastapi-mail==1.5.8
+bcrypt==4.2.1
+pydantic==2.12.4
+pydantic-settings==2.12.0
+python-jose[cryptography]==3.5.0
+redis==7.0.1
+SQLAlchemy==2.0.44
+uvicorn==0.38.0
+httpx==0.28.1
+alembic==1.17.2
+psycopg2-binary==2.9.11
+slowapi==0.1.9
+python-multipart==0.0.9
