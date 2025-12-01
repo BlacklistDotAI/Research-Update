@@ -296,44 +296,38 @@ export const healthCheck = async (): Promise<{ status: string; timestamp: string
 // --------------------
 // Donate API Functions
 // --------------------
-export const createDonate = async (
-  donateData: DonateRequest
-): Promise<DonateResponse> => {
-  try {
-    const response = await apiClient.post<DonateResponse>("/api/v1/donates/", donateData);
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw {
-        message: error.response?.data?.detail || error.message,
-        code: error.code,
-        status: error.response?.status,
-      };
-    }
-    throw error;
-  }
+export const createDonate = async (donateData: DonateRequest): Promise<DonateResponse> => {
+  const formData = new FormData();
+  Object.entries(donateData).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) formData.append(key, String(value));
+  });
+  const response = await apiClient.post<DonateResponse>("/donates/", formData);
+  return response.data;
 };
+
+export const getDonates = async (): Promise<DonateResponse[]> => {
+  const response = await apiClient.get<DonateResponse[]>("/donates/list");
+  return response.data ?? [];
+};
+
 
 // --------------------
 // Report API Functions
 // --------------------
-export const createReport = async (
-  reportData: ReportRequest
-): Promise<ReportResponse> => {
-  try {
-    const response = await apiClient.post<ReportResponse>("/api//v1/reports/", reportData);
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      throw {
-        message: error.response?.data?.detail || error.message,
-        code: error.code,
-        status: error.response?.status,
-      };
-    }
-    throw error;
-  }
+export const createReport = async (reportData: ReportRequest): Promise<ReportResponse> => {
+  const formData = new FormData();
+  Object.entries(reportData).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) formData.append(key, String(value));
+  });
+  const response = await apiClient.post<ReportResponse>("/reports/", formData);
+  return response.data;
 };
+
+export const getReports = async (): Promise<ReportResponse[]> => {
+  const response = await apiClient.get<ReportResponse[]>("/reports/published");
+  return response.data ?? [];
+};
+
 // ============================================================================
 // EXPORTS
 // ============================================================================

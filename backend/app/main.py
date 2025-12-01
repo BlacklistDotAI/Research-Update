@@ -9,7 +9,24 @@ from app.api.v1.client_uploads import router as client_uploads_router
 from app.api.v1.client_phone import router as client_phone_router  # Nếu có
 from app.api.v1.report_router import router as client_report_router
 from app.api.v1.donate_router import router as client_donate_router
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+# ----------------------------
+# CORS Middleware
+# ----------------------------
+origins = [
+    "http://localhost:5173", 
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # hoặc ["*"] nếu không dùng credentials
+    allow_credentials=True,
+    allow_methods=["*"],     # GET, POST, PUT, DELETE, PATCH, OPTIONS
+    allow_headers=["*"],     # tất cả headers
+)
 
 app.include_router(admin_auth_router, prefix="/api/v1")
 app.include_router(admin_tasks_router, prefix="/api/v1/admin")

@@ -3,8 +3,10 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { isAuthenticated } from './utils/auth';
 import { CookieConsent } from './components/CookieConsent';
 import { GoogleAnalytics } from './components/GoogleAnalytics';
-import TestDonate from "./components/TestDonate";
-import TestReport from "./components/TestReport";
+import DonationForm from "./components/DonationForm";
+import ReportForm from "./components/ReportForm";
+import ShowTest from "./components/ShowTest";
+
 // Lazy load pages for better performance
 const Landing = lazy(() => import('./pages/Landing').then(module => ({ default: module.Landing })));
 const Login = lazy(() => import('./pages/Login').then(module => ({ default: module.Login })));
@@ -45,8 +47,11 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 function App() {
   return (
     <>
-      <TestDonate />
-      <TestReport />
+      <div className="flex flex-col gap-8">
+      <DonationForm />
+      <ReportForm />
+    </div>
+      <ShowTest />
       <GoogleAnalytics />
       <CookieConsent />
       <Suspense fallback={<LoadingSpinner />}>
@@ -78,6 +83,7 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/share/:id" element={<Share />} />
+          <Route path="/show-test" element={<ShowTest />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

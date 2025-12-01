@@ -94,3 +94,9 @@ def create_report(
     db.commit()
     db.refresh(report)
     return report
+
+#GET reports
+@router.get("/published",response_model=List[ReportRead])
+def get_reports(db: Session=Depends(get_db)):
+    reports=db.query(Report).filter(Report.status=="Publish").all()
+    return reports

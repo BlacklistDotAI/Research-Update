@@ -65,3 +65,9 @@ def create_donate(
     db.commit()
     db.refresh(donate)
     return donate
+
+#GET donates
+@router.get("/list",response_model=List[DonateRead])
+def get_reports(db: Session=Depends(get_db)):
+    reports=db.query(Donate).all()
+    return reports
